@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: mongo-db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - transparencia-net
+
+  api:
+    build: .
+    container_name: transparencia-api
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/transparencia_db
+    depends_on:
+      - mongo
+    networks:
+      - transparencia-net
+
+volumes:
+  mongo_data:
+
+networks:
+  transparencia-net:
+    driver: bridge
