@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Thiagzz/TransparenciaSalarialESG-CI-CD.git'
+                git branch: 'master', url: 'https://github.com/Thiagzz/TransparenciaSalarialESG-CI-CD.git'
             }
         }
 
