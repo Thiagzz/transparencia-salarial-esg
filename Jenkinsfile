@@ -28,21 +28,21 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo '🧪 Executando testes...'
+                echo ' Executando testes...'
                 bat 'mvn test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                echo '🐳 Construindo imagem Docker...'
+                echo ' Construindo imagem Docker...'
                 bat 'docker build -t %IMAGE_NAME% .'
             }
         }
 
         stage('Deploy to Staging') {
             steps {
-                echo '🚀 Deploy no ambiente STAGING...'
+                echo ' Deploy no ambiente STAGING...'
                 bat '''
                 docker stop %STAGING_CONTAINER% || true
                 docker rm %STAGING_CONTAINER% || true
@@ -56,7 +56,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo '🚀 Deploy no ambiente PRODUÇÃO...'
+                echo ' Deploy no ambiente PRODUÇÃO...'
                 bat '''
                 docker stop %PROD_CONTAINER% || true
                 docker rm %PROD_CONTAINER% || true
